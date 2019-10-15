@@ -14,13 +14,28 @@ module OmniAuth
           "https://www.mediawiki.org"
         end
       end
-
+      
+      def self.oauth
+        if ENV['WIKI_AUTH_OAUTH']
+          ENV['WIKI_AUTH_OAUTH']
+        else
+          "Special:OAuth"
+        end
+      end
+      
+      def self.script
+        if ENV['WIKI_AUTH_SCRIPT']
+          ENV['WIKI_AUTH_SCRIPT']
+        else
+          "/w"
+        end
+      end
 
       option :client_options, {
         :site => site,
-        :authorize_path => '/wiki/Special:Oauth/authorize',
-        :access_token_path => '/w/index.php?title=Special:OAuth/token',
-        :request_token_path => '/w/index.php?title=Special:OAuth/initiate'
+        :authorize_path => "%s/index.php?title=%s/authorize" % [script, oauth],
+        :access_token_path => "%s/index.php?title=%s/token" % [script, oauth],
+        :request_token_path => "%s/index.php?title=%s/initiate" % [script, oauth]
       }
 
       # These are called after authentication has succeeded. If
@@ -46,7 +61,7 @@ module OmniAuth
 
 
       def raw_info
-        @raw_info ||= parse_info(access_token.get('/w/index.php?title=Special:OAuth/identify'))
+        @raw_info ||= parse_info(access_token.get("%s/index.php?title=%s/identify" % [script, oauth]))
 
         @raw_info
       end
