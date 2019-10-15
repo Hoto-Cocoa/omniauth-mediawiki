@@ -5,9 +5,9 @@ require "omniauth-mediawiki/version"
 Gem::Specification.new do |gem|
   gem.name        = 'omniauth-mediawiki'
   gem.version     = OmniAuth::Mediawiki::VERSION
-  gem.authors     = ["Tim Waters"]
-  gem.email       = 'tim@geothings.net'
-  gem.homepage    = 'https://github.com/timwaters/omniauth-mediawiki'
+  gem.authors     = ["Tim Waters", "Cocoa Hoto"]
+  gem.email       = 'cocoa@hoto.us'
+  gem.homepage    = 'https://github.com/Hoto-Cocoa/omniauth-mediawiki'
   gem.description = %q{Mediawiki OAuth strategy for OmniAuth 1.0a }
   gem.summary     = %q{Mediawiki strategy for OmniAuth 1.0a for wikipedia.org, commons.wikimedia.org etc where the wiki has the OAuth extension installed}
   gem.license     = 'MIT'
